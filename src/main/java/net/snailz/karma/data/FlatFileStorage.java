@@ -3,12 +3,16 @@ package net.snailz.karma.data;
 import net.snailz.karma.Karma;
 import net.snailz.karma.KarmaUser;
 
+import java.util.UUID;
+
 public class FlatFileStorage implements DataStorage{
 
     Karma plugin;
+    CustomConfig storageFile;
 
     public FlatFileStorage(Karma plugin){
         this.plugin = plugin;
+        this.storageFile = new CustomConfig("players", plugin);
     }
 
     @Override
@@ -17,7 +21,7 @@ public class FlatFileStorage implements DataStorage{
     }
 
     @Override
-    public KarmaUser deSterilize(String uuid) {
+    public KarmaUser deSterilize(UUID uuid) {
         return null;
     }
 

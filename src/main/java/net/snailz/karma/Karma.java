@@ -1,3 +1,4 @@
+
 package net.snailz.karma;
 
 import net.snailz.karma.data.DataStorage;
@@ -8,8 +9,16 @@ public class Karma extends JavaPlugin{
 
     DataStorageManager dataStorageManager = new DataStorageManager(this);
     DataStorage dataStorage;
+    KarmaUserManager karmaUserManager;
 
     public void onEnable(){
         dataStorage = dataStorageManager.getDataStorage();
+        karmaUserManager = new KarmaUserManager(dataStorage);
+
+        initListeners();
+    }
+
+    private void initListeners(){
+        this.getServer().getPluginManager().registerEvents(new JoinLeaveListeners(karmaUserManager), this);
     }
 }

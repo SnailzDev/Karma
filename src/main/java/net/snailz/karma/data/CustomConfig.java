@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
 import static org.bukkit.Bukkit.getLogger;
+
+import net.snailz.karma.Karma;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -54,7 +56,7 @@ public class CustomConfig {
         try {
             getCustomFile().save(customfile);
         } catch (IOException ex) {
-            getLogger().log(SEVERE, "Could not save config to " + customfile + " Please report this to Snailz", ex);
+            getLogger().log(SEVERE, "Could not save config to " + customfile + " Please report this!", ex);
         }
     }
 

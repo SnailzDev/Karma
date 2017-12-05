@@ -4,10 +4,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class KarmaListeners implements Listener{
+public class DamageListeners implements Listener{
 
     public void onPlayerKill(PlayerDeathEvent e){
         Player killed = e.getEntity().getPlayer();
-        Player killer = e.
+        Player killer = e.getEntity();
+
     }
 }

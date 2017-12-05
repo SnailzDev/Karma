@@ -5,6 +5,7 @@ import net.snailz.karma.KarmaUser;
 import org.bukkit.entity.Player;
 
 import java.sql.*;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public class MySQLStorage implements DataStorage{
@@ -34,7 +35,7 @@ public class MySQLStorage implements DataStorage{
     }
 
     @Override
-    public KarmaUser deSterilize(String uuid) {
+    public KarmaUser deSterilize(UUID uuid) {
         return null;
     }
 
