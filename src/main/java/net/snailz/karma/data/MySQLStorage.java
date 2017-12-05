@@ -22,19 +22,10 @@ public class MySQLStorage implements DataStorage{
         String database = this.plugin.getConfig().getString("mysql.database");
         executeUpdate("CREATE DATABASE IF NOT EXISTS " + database);
         executeUpdate("USE " + database);
-        /*
-        Ignore These Lines, they were from old plugin and are being used as reference
-        executeUpdate("CREATE TABLE IF NOT EXISTS blocks (" +
-                "id int NOT NULL AUTO_INCREMENT, " +
-                "x int, y int, z int, " +
-                "block varchar(36), " +
-                "PRIMARY KEY (id))");
         executeUpdate("CREATE TABLE IF NOT EXISTS players (" +
                 "uuid varchar(32)," +
-                "id int," +
-                "time int," +
-                "FOREIGN KEY (id) REFERENCES blocks(id))");
-        */
+                "karma int," +
+                "PRIMARY KEY(uuid));");
     }
 
     @Override
