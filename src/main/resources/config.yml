@@ -1,0 +1,13 @@
+#DO NOT CHANGE
+version: 0.4
+
+#Can Be:
+#  file - karma.yml
+#  mysql - MySQL database
+#Database
+storagemethod: file
+mysql:
+  address: localhost
+  database: minecraft
+  username: root
+  password: password

@@ -1,0 +1,6 @@
+name: Karma
+version: 2.0 DEVELOPMENT
+main: net.snailz.karma.Karma
+authors: [Snailz, Worlfy]
+database: true
+description: Implements a "karma" system that punishes killing innocent players
