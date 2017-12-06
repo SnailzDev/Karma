@@ -4,3 +4,13 @@ main: net.snailz.karma.Karma
 authors: [Snailz, Worlfy]
 database: true
 description: Implements a "karma" system that punishes killing innocent players
+permissions:
+  karma.bypass:
+    description: Allows the player to not change karma
+    default: false
+  karma.admin:
+    description: Gives the player access to Karma admin commands
+    default: admin
+commands:
+  karma:
+    permission: karma.admin
