@@ -11,3 +11,34 @@ mysql:
   database: minecraft
   username: root
   password: password
+
+prefix: "[Karma]"
+
+defaultkarma: 0
+#Specify the minimum level
+#Ex: players are red if they are -3 or below, players are green if they are 3 or higher
+karmalevels:
+  red: -3
+  green: 3
+
+karmachanges:
+  #killer
+  red:
+    #killed
+    red:
+    neutral:
+    green:
+  neutral:
+    red:
+    neutral:
+    green:
+  green:
+    red:
+    neutral:
+    green:
+
+#Makes players yellow if they damage another player but don't kill them
+yellowplayers:
+  enabled: true
+  #In Seconds
+  duration: 60

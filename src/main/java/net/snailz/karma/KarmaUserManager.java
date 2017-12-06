@@ -25,7 +25,6 @@ public class KarmaUserManager {
 
     public void addKarmaUser(Player player){
         addKarmaUser(dataStorage.deSterilize(player.getUniqueId()));
-
     }
 
     public void removeKarmaUser(KarmaUser karmaUser){
@@ -47,6 +46,10 @@ public class KarmaUserManager {
 
     public KarmaUser getKarmaUser(UUID uuid){
         return karmaUsersMap.get(uuid);
+    }
+
+    public KarmaUser getKarmaUser(Player player){
+        return karmaUsersMap.get(player.getUniqueId());
     }
 
     public void saveAllKarma(){
