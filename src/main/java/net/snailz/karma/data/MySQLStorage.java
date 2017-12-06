@@ -2,6 +2,7 @@ package net.snailz.karma.data;
 
 import net.snailz.karma.Karma;
 import net.snailz.karma.KarmaUser;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.sql.*;
@@ -23,19 +24,34 @@ public class MySQLStorage implements DataStorage{
         String database = this.plugin.getConfig().getString("mysql.database");
         executeUpdate("CREATE DATABASE IF NOT EXISTS " + database);
         executeUpdate("USE " + database);
-        executeUpdate("CREATE TABLE IF NOT EXISTS players (" +
+        executeUpdate("CREATE TABLE IF NOT EXISTS karma (" +
                 "uuid varchar(32)," +
                 "karma int," +
                 "PRIMARY KEY(uuid));");
     }
 
+    private void printSQLErr(){
+        plugin.getLogger().log(Level.SEVERE, "MySQL Error! Please report this with server log!");
+    }
+
     @Override
     public void sterilize(KarmaUser user) {
-
+        throw new UnsupportedOperationException("MySQL sterilize not added!");
     }
 
     @Override
     public KarmaUser deSterilize(UUID uuid) {
+        KarmaUser karmaUser;
+        ResultSet results = executeQuery("SELECT * FROM karma WHERE uuid = " + uuid.toString());
+        try {
+            results.next();
+            int karma = results.getInt("karma");
+            karmaUser = new KarmaUser(Bukkit.getPlayer(uuid), karma);
+            return karmaUser;
+        } catch (SQLException e){
+            printSQLErr();
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -51,8 +67,8 @@ public class MySQLStorage implements DataStorage{
             String username = plugin.getConfig().getString("mysql.username");
             String password = plugin.getConfig().getString("mysql.password");
             connection = DriverManager.getConnection("jdbc:mysql://" + address + "/feedback?user=" + username + "&password=" + password);
-        } catch (SQLException e) {
-            plugin.getLogger().log(Level.SEVERE, "MySQL Error! Please report this with server log!");
+        } catch (SQLException e){
+            printSQLErr();
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             plugin.getLogger().log(Level.SEVERE, "MySQL Driver Not Found! Please report this!");
@@ -66,7 +82,7 @@ public class MySQLStorage implements DataStorage{
             preparedStatement.executeUpdate();
 
         } catch (SQLException e){
-            plugin.getLogger().log(Level.SEVERE, "MySQL Error! Please report this to Snailz with server log!!");
+            printSQLErr();
             e.printStackTrace();
         }
     }
@@ -77,7 +93,7 @@ public class MySQLStorage implements DataStorage{
             return preparedStatement.executeQuery();
 
         } catch (SQLException e){
-            plugin.getLogger().log(Level.SEVERE, "MySQL Error! Please report this to Snailz with server log!!");
+            printSQLErr();
             e.printStackTrace();
             return null;
         }

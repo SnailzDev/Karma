@@ -9,8 +9,9 @@ public class Karma extends JavaPlugin{
 
     DataStorageManager dataStorageManager = new DataStorageManager(this);
     DataStorage dataStorage;
-    KarmaUserManager karmaUserManager;
+    public KarmaUserManager karmaUserManager;
 
+    @Override
     public void onEnable(){
         dataStorage = dataStorageManager.getDataStorage();
         karmaUserManager = new KarmaUserManager(dataStorage);
@@ -20,5 +21,10 @@ public class Karma extends JavaPlugin{
 
     private void initListeners(){
         this.getServer().getPluginManager().registerEvents(new JoinLeaveListeners(karmaUserManager), this);
+    }
+
+    @Override
+    public void onDisable(){
+        karmaUserManager.saveAllKarma();
     }
 }

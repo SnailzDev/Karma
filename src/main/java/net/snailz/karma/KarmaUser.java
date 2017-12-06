@@ -37,4 +37,16 @@ public class KarmaUser {
     public int getKarma(){
         return karma;
     }
+
+    public void removeKarma(int karma){
+        this.karma = this.karma - karma;
+    }
+
+    public void addKarma(int karma){
+        this.karma = this.karma + karma;
+    }
+
+    public void setKarma(int karma){
+        this.karma = karma;
+    }
 }

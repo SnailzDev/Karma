@@ -23,7 +23,7 @@ public class KarmaUserManager {
         karmaUsersMap.put(karmaUser.getPlayer().getUniqueId(), karmaUser);
     }
 
-    public void addNewKarmaUser(Player player){
+    public void addKarmaUser(Player player){
         addKarmaUser(dataStorage.deSterilize(player.getUniqueId()));
 
     }
@@ -33,7 +33,7 @@ public class KarmaUserManager {
         karmaUsersMap.remove(karmaUser);
     }
 
-    public void removeNewKarmaUser(Player player){
+    public void removeKarmaUser(Player player){
         removeKarmaUser(karmaUsersMap.get(player.getUniqueId()));
     }
 
@@ -41,11 +41,17 @@ public class KarmaUserManager {
         dataStorage.sterilize(karmaUser);
     }
 
-    public void sterilizeNewKarmaUser(Player player){
-        dataStorage.sterilize(karmaUsersMap.get(player.getUniqueId()));
+    public void sterilizeKarmaUser(Player player){
+        sterilizeKarmaUser(karmaUsersMap.get(player.getUniqueId()));
     }
 
     public KarmaUser getKarmaUser(UUID uuid){
         return karmaUsersMap.get(uuid);
+    }
+
+    public void saveAllKarma(){
+        for (KarmaUser karmaUser : karmaUsers){
+            dataStorage.sterilize(karmaUser);
+        }
     }
 }

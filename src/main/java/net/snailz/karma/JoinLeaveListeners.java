@@ -13,10 +13,11 @@ public class JoinLeaveListeners implements Listener{
     }
 
     public void onPlayerJoin(PlayerJoinEvent e){
-        karmaUserManager.addNewKarmaUser(e.getPlayer());
+        karmaUserManager.addKarmaUser(e.getPlayer());
     }
 
     public void onPlayerLeave(PlayerQuitEvent e){
-        karmaUserManager.sterilizeNewKarmaUser(e.getPlayer());
+        karmaUserManager.sterilizeKarmaUser(e.getPlayer());
+        karmaUserManager.removeKarmaUser(e.getPlayer());
     }
 }
