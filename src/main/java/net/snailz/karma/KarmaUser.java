@@ -15,6 +15,9 @@ public class KarmaUser {
     }
 
     public static int karmaLevelToKarma(KarmaLevel karmaLevel){
+        if(karmaLevel == KarmaLevel.YELLOW){
+            return 0;
+        }
         //Logic Here
         throw new UnsupportedOperationException("Karma To Karma Level Not Added!");
     }
@@ -40,13 +43,24 @@ public class KarmaUser {
 
     public void removeKarma(int karma){
         this.karma = this.karma - karma;
+        this.updateKarmaLevel();
     }
 
     public void addKarma(int karma){
         this.karma = this.karma + karma;
+        this.updateKarmaLevel();
     }
 
     public void setKarma(int karma){
         this.karma = karma;
+        this.updateKarmaLevel();
+    }
+
+    public void setKarmaLevel(KarmaLevel karmaLevel){
+        this.karmaLevel = karmaLevel;
+    }
+
+    private void updateKarmaLevel(){
+        //Update Logic
     }
 }

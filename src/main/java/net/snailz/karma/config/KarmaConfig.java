@@ -1,4 +1,4 @@
-package net.snailz.karma;
+package net.snailz.karma.config;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;

@@ -1,4 +1,4 @@
-package net.snailz.karma.data;
+package net.snailz.karma.config;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,5 +1,6 @@
 package net.snailz.karma.data;
 
+import net.snailz.karma.config.CustomConfig;
 import net.snailz.karma.Karma;
 import net.snailz.karma.KarmaUser;
 import org.bukkit.Bukkit;

@@ -1,5 +1,7 @@
 package net.snailz.karma;
 
+import net.snailz.karma.config.KarmaConfig;
+import net.snailz.karma.config.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -27,8 +29,8 @@ public class AdminCommands implements CommandExecutor{
                     showHelpMenu(commandSender);
                 }
                 karmaUserManager.getKarmaUser(player).setKarma(KarmaConfig.defaultKarma);
-                commandSender.sendMessage(KarmaConfig.prefix + ChatColor.GREEN + "You have reset the karma of " + ChatColor.AQUA + player.getDisplayName() + ChatColor.GREEN + " to "
-                        + ChatColor.RED + String.valueOf(KarmaConfig.defaultKarma));
+                commandSender.sendMessage(KarmaConfig.prefix + Messages.getKarmaResetSender(player.getDisplayName(), KarmaConfig.defaultKarma));
+                player.sendMessage(KarmaConfig.prefix + Messages.getKarmaResetReceiver(player.getDisplayName(), KarmaConfig.defaultKarma));
             }
         }
         return false;

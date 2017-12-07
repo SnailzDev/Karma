@@ -2,6 +2,9 @@
 package net.snailz.karma;
 
 import net.snailz.karma.api.KarmaAPI;
+import net.snailz.karma.config.CustomConfig;
+import net.snailz.karma.config.KarmaConfig;
+import net.snailz.karma.config.Messages;
 import net.snailz.karma.data.DataStorage;
 import net.snailz.karma.data.DataStorageManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +25,7 @@ public class Karma extends JavaPlugin{
         KarmaAPI.getInstance().initAPI(karmaUserManager);
 
         KarmaConfig.initKarmaConfig(this.getConfig());
+        Messages.initMessages(new CustomConfig("messages", this));
     }
 
     private void initListeners(){

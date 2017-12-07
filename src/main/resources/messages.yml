@@ -1,0 +1,3 @@
+karmareset:
+  sender: "You have reset the karma of %player% to %karma%"
+  receiver: "Your karma has been reset to %karma% by %player%"
