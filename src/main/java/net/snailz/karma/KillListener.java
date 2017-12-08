@@ -1,5 +1,6 @@
 package net.snailz.karma;
 
+import net.snailz.karma.config.KarmaConfig;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,5 +19,7 @@ public class KillListener implements Listener{
     public void onPlayerKill(PlayerDeathEvent e){
         KarmaUser killed = karmaUserManager.getKarmaUser(e.getEntity().getUniqueId());
         KarmaUser killer = karmaUserManager.getKarmaUser(e.getEntity().getKiller().getUniqueId());
+        int karmaChange = KarmaConfig.getKarmaChange(killer.getKarmaLevel(), killed.getKarmaLevel());
+        killer.changeKarma(karmaChange, killed);
     }
 }

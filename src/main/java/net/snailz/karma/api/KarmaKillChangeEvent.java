@@ -1,15 +1,11 @@
 package net.snailz.karma.api;
 
 import net.snailz.karma.KarmaUser;
-import net.snailz.karma.data.DataStorage;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.player.PlayerEvent;
 
-public class KarmaChangeEvent extends Event implements Cancellable{
-
-    private DataStorage dataStorage;
+public class KarmaKillChangeEvent extends Event implements Cancellable{
 
     private static final HandlerList handlers = new HandlerList();
     private boolean cancelled;
@@ -18,14 +14,11 @@ public class KarmaChangeEvent extends Event implements Cancellable{
     private KarmaUser killer;
 
     //For Cancellable
-    private int killedOldKarma;
     private int killerOldKarma;
 
-    public KarmaChangeEvent(DataStorage dataStorage, KarmaUser killed, KarmaUser killer, int killedOldKarma, int killerOldKarma){
-        this.dataStorage = dataStorage;
+    public KarmaKillChangeEvent(KarmaUser killed, KarmaUser killer, int killerOldKarma){
         this.killed = killed;
         this.killer = killer;
-        this.killedOldKarma = killedOldKarma;
         this.killerOldKarma = killerOldKarma;
     }
 
@@ -42,8 +35,7 @@ public class KarmaChangeEvent extends Event implements Cancellable{
     @Override
     public void setCancelled(boolean b) {
         cancelled = b;
-        //Cancelling does not trigger a new KarmaChangeEvent
-        killed.setKarma(killedOldKarma);
+        //Cancelling does not trigger a new KarmaKillChangeEvent
         killer.setKarma(killerOldKarma);
     }
 
@@ -55,8 +47,8 @@ public class KarmaChangeEvent extends Event implements Cancellable{
         return killer;
     }
 
-    public int getKilledKarmaChange(){
-        return killedOldKarma - killed.getKarma();
+    public int getKillerKarmaChange(){
+        return killerOldKarma - killer.getKarma();
     }
 
     public int getKillerOldKarma(){

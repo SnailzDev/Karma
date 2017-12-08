@@ -3,6 +3,7 @@ package net.snailz.karma.data;
 import net.snailz.karma.config.CustomConfig;
 import net.snailz.karma.Karma;
 import net.snailz.karma.KarmaUser;
+import net.snailz.karma.config.KarmaConfig;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;
@@ -28,6 +29,11 @@ public class FlatFileStorage implements DataStorage{
         int karma = storageFile.getCustomFile().getInt(uuid.toString());
         karmaUser = new KarmaUser(Bukkit.getPlayer(uuid), karma);
         return karmaUser;
+    }
+
+    @Override
+    public void addNewKarmaUser(KarmaUser karmaUser) {
+        storageFile.getCustomFile().set(karmaUser.getPlayer().getUniqueId().toString(), KarmaConfig.defaultKarma);
     }
 
     @Override

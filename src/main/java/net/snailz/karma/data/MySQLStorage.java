@@ -2,6 +2,7 @@ package net.snailz.karma.data;
 
 import net.snailz.karma.Karma;
 import net.snailz.karma.KarmaUser;
+import net.snailz.karma.KarmaUserManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -36,7 +37,9 @@ public class MySQLStorage implements DataStorage{
 
     @Override
     public void sterilize(KarmaUser user) {
-        throw new UnsupportedOperationException("MySQL sterilize not added!");
+        //ERROR HERE. MOST LIKELY NOT THE WAY TO SET IN UPDATE STATEMENT
+        executeUpdate("UPDATE karma SET karma = " + String.valueOf(user.getKarma()) + " WHERE uuid = "
+                + user.getPlayer().getUniqueId().toString());
     }
 
     @Override
@@ -53,6 +56,12 @@ public class MySQLStorage implements DataStorage{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void addNewKarmaUser(KarmaUser karmaUser) {
+        executeUpdate("INSERT INTO karma (uuid, karma) VALUES (" + karmaUser.getPlayer().getUniqueId().toString() + ", "
+                + String.valueOf(karmaUser.getKarma()) + ";");
     }
 
     @Override

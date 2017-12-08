@@ -1,3 +1,22 @@
+#Karma commands
 karmareset:
+  #Command sender
   sender: "You have reset the karma of %player% to %karma%"
+  #Command receiver
   receiver: "Your karma has been reset to %karma% by %player%"
+karmaadd:
+  sender: "You have given %player% %karma% karma"
+  receiver: "You have received %karma% from %player%"
+karmaremove:
+  sender: "You have removed %karma% karma from %player%"
+  receiver: "%player% has taken %karma% karma from you"
+
+#Karma Change Messages
+karmaloss: "You have lost %karma% karma"
+karmagain: "You have gained %karma% karma"
+#Karma Level will be colored
+karmalevelchange: "Your karma level has changed to %karmalevel%"
+
+commanderrors:
+  #EX: /karma add Snailz oof
+  illegalkarmaammount: "That is not a valid amount of karma!"

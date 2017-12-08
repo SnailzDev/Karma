@@ -1,5 +1,6 @@
 package net.snailz.karma;
 
+import net.snailz.karma.config.KarmaConfig;
 import net.snailz.karma.data.DataStorage;
 import org.bukkit.entity.Player;
 
@@ -25,6 +26,13 @@ public class KarmaUserManager {
 
     public void addKarmaUser(Player player){
         addKarmaUser(dataStorage.deSterilize(player.getUniqueId()));
+    }
+
+    public void addNewKarmaUser(Player player){
+        KarmaUser karmaUser = new KarmaUser(player, KarmaConfig.defaultKarma);
+        karmaUsers.add(karmaUser);
+        karmaUsersMap.put(player.getUniqueId(), karmaUser);
+        dataStorage.addNewKarmaUser(karmaUser);
     }
 
     public void removeKarmaUser(KarmaUser karmaUser){

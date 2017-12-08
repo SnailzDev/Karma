@@ -1,5 +1,10 @@
 package net.snailz.karma;
 
+import net.snailz.karma.api.KarmaKillChangeEvent;
+import net.snailz.karma.api.KarmaLevelChangeEvent;
+import net.snailz.karma.config.KarmaConfig;
+import net.snailz.karma.config.Messages;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 //Wrapper for Player
@@ -56,11 +61,37 @@ public class KarmaUser {
         this.updateKarmaLevel();
     }
 
+    public void changeKarma(int karma, KarmaUser killed){
+        int oldKarma = karma;
+        this.karma = this.karma + karma;
+        KarmaKillChangeEvent karmaKillChangeEvent = new KarmaKillChangeEvent(killed, this, oldKarma);
+        Bukkit.getPluginManager().callEvent(karmaKillChangeEvent);
+        //Checking if it was canceled before send messages. I don't know much about the Event API so this may be wrong
+        if (!karmaKillChangeEvent.isCancelled()){
+            if (karma > oldKarma) {
+                this.getPlayer().sendMessage(KarmaConfig.prefix + Messages.getKarmaGain(karma));
+            } else if (karma < oldKarma){
+                this.getPlayer().sendMessage(KarmaConfig.prefix + Messages.getKarmaLoss(karma));
+            }
+            updateKarmaLevel();
+        }
+    }
+
     public void setKarmaLevel(KarmaLevel karmaLevel){
+        Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
         this.karmaLevel = karmaLevel;
     }
 
     private void updateKarmaLevel(){
-        //Update Logic
+        if (KarmaConfig.greenKarma.contains(karma) && karmaLevel != KarmaLevel.GREEN){
+            Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
+            karmaLevel = KarmaLevel.GREEN;
+        } else if (KarmaConfig.neutralKarma.contains(karma) && karmaLevel != KarmaLevel.NEUTRAL){
+            Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
+            karmaLevel = KarmaLevel.NEUTRAL;
+        } else if (KarmaConfig.redKarma.contains(karma) && karmaLevel != KarmaLevel.RED){
+            Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
+            karmaLevel = KarmaLevel.RED;
+        }
     }
 }

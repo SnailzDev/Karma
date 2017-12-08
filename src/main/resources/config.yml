@@ -15,27 +15,28 @@ mysql:
 prefix: "[Karma]"
 
 defaultkarma: 0
-#Specify the minimum level
-#Ex: players are red if they are -3 or below, players are green if they are 3 or higher
+#Specify the levels of each karma. Use ~ the same way you would use a - to specify a range. Please go greater to lesser
 karmalevels:
-  red: -3
-  green: 3
+  red: -3~-1
+  #TO HAVE NEUTRAL 0 the 0~0 is required
+  neutral: 0~0
+  green: 1~3
 
 karmachanges:
   #killer
   red:
     #killed
-    red:
-    neutral:
-    green:
+    red: 1
+    neutral: -1
+    green: -2
   neutral:
-    red:
-    neutral:
-    green:
+    red: 1
+    neutral: -1
+    green: -2
   green:
-    red:
-    neutral:
-    green:
+    red: 1
+    neutral: -1
+    green: -2
 
 #Makes players yellow if they damage another player but don't kill them
 yellowplayers:

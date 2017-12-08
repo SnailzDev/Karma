@@ -10,5 +10,7 @@ public interface DataStorage {
 
     KarmaUser deSterilize(UUID uuid);
 
+    void addNewKarmaUser(KarmaUser karmaUser);
+
     String getStorageMethod();
 }
