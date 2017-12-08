@@ -1,6 +1,6 @@
 package net.snailz.karma.config;
 
-import net.snailz.karma.KarmaLevel;
+import net.snailz.karma.user.KarmaLevel;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -17,6 +17,9 @@ public class KarmaConfig {
     public static ArrayList<Integer> neutralKarma;
     public static ArrayList<Integer> greenKarma;
 
+    public static boolean yellowEnabled;
+    public static int yellowTime;
+
     private static FileConfiguration config;
 
     /*
@@ -32,6 +35,8 @@ public class KarmaConfig {
         config = config_instance;
         prefix = ChatColor.translateAlternateColorCodes('&', config.getString("prefix")) + " ";
         defaultKarma = config.getInt("defaultkarma");
+        yellowEnabled = config.getBoolean("yellowplayers.enabled");
+        yellowTime = config.getInt("yellowplayers.time");
 
         loadRanges();
         loadKarmaChages();

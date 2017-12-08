@@ -1,6 +1,6 @@
 package net.snailz.karma.data;
 
-import net.snailz.karma.KarmaUser;
+import net.snailz.karma.user.KarmaUser;
 
 import java.util.UUID;
 

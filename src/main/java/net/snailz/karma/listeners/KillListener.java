@@ -1,6 +1,8 @@
-package net.snailz.karma;
+package net.snailz.karma.listeners;
 
 import net.snailz.karma.config.KarmaConfig;
+import net.snailz.karma.user.KarmaUser;
+import net.snailz.karma.user.KarmaUserManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

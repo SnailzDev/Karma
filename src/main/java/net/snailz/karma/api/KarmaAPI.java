@@ -1,7 +1,7 @@
 package net.snailz.karma.api;
 
-import net.snailz.karma.KarmaUser;
-import net.snailz.karma.KarmaUserManager;
+import net.snailz.karma.user.KarmaUser;
+import net.snailz.karma.user.KarmaUserManager;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;

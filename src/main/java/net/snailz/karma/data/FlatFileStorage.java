@@ -2,7 +2,7 @@ package net.snailz.karma.data;
 
 import net.snailz.karma.config.CustomConfig;
 import net.snailz.karma.Karma;
-import net.snailz.karma.KarmaUser;
+import net.snailz.karma.user.KarmaUser;
 import net.snailz.karma.config.KarmaConfig;
 import org.bukkit.Bukkit;
 

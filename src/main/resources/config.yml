@@ -1,5 +1,8 @@
-#DO NOT CHANGE
-version: 0.4
+#DO NOT CHANGE ANY OF THESE
+#-------------------------------------
+version: 2.0
+hasranbefore: false
+#-------------------------------------
 
 #Can Be:
 #  file - karma.yml
@@ -11,6 +14,17 @@ mysql:
   database: minecraft
   username: root
   password: password
+
+#Can Be:
+#  vanilla - Vanilla scoreboard
+#  vault - Group based scoreboard. Specify permission groups for each group below
+scoreboardmethod:
+
+scoreboardgroups:
+  red:
+  yellow:
+  neutral:
+  green:
 
 prefix: "[Karma]"
 

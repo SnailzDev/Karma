@@ -1,10 +1,8 @@
 package net.snailz.karma.data;
 
 import net.snailz.karma.Karma;
-import net.snailz.karma.KarmaUser;
-import net.snailz.karma.KarmaUserManager;
+import net.snailz.karma.user.KarmaUser;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 import java.sql.*;
 import java.util.UUID;

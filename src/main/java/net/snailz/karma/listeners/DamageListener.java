@@ -1,5 +1,7 @@
-package net.snailz.karma;
+package net.snailz.karma.listeners;
 
+import net.snailz.karma.user.KarmaUser;
+import net.snailz.karma.user.KarmaUserManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,9 +16,11 @@ public class DamageListener implements Listener {
         this.karmaUserManager = karmaUserManager;
     }
 
+
+    //Yet To Be Implemented
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDamage(EntityDamageEvent e){
         KarmaUser killer = karmaUserManager.getKarmaUser(((Player) e.getEntity()).getUniqueId());
-
+        throw new UnsupportedOperationException("Damage Listener has yet to be implimented");
     }
 }

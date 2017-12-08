@@ -1,8 +1,7 @@
 package net.snailz.karma.api;
 
-import net.snailz.karma.KarmaLevel;
-import net.snailz.karma.KarmaUser;
-import org.bukkit.event.Cancellable;
+import net.snailz.karma.user.KarmaLevel;
+import net.snailz.karma.user.KarmaUser;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 

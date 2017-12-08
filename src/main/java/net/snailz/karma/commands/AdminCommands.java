@@ -1,9 +1,10 @@
-package net.snailz.karma;
+package net.snailz.karma.commands;
 
 import net.snailz.karma.config.KarmaConfig;
 import net.snailz.karma.config.Messages;
+import net.snailz.karma.user.KarmaUser;
+import net.snailz.karma.user.KarmaUserManager;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

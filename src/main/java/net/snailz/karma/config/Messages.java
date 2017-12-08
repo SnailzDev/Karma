@@ -1,7 +1,7 @@
 package net.snailz.karma.config;
 
 
-import net.snailz.karma.KarmaLevel;
+import net.snailz.karma.user.KarmaLevel;
 import org.bukkit.ChatColor;
 
 public class Messages {
