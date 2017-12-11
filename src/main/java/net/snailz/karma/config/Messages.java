@@ -22,7 +22,7 @@ public class Messages {
         karmaResetSender = ChatColor.translateAlternateColorCodes('&', config.getCustomFile().getString("karmareset.sender"));
         karmaResetReceiver = ChatColor.translateAlternateColorCodes('&', config.getCustomFile().getString("karmareset.receiver"));
         karmaAddSender = ChatColor.translateAlternateColorCodes('&', config.getCustomFile().getString("karmaadd.sender"));
-        karmaAddReceiver = ChatColor.translateAlternateColorCodes('&', config.getCustomFile().getString("karmadd.receiver"));
+        karmaAddReceiver = ChatColor.translateAlternateColorCodes('&', config.getCustomFile().getString("karmaadd.receiver"));
         karmaRemoveSender = ChatColor.translateAlternateColorCodes('&', config.getCustomFile().getString("karmaremove.sender"));
         karmaRemoveReceiver = ChatColor.translateAlternateColorCodes('&', config.getCustomFile().getString("karmaremove.receiver"));
 

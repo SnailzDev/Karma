@@ -26,12 +26,7 @@ public class VanillaScoreboard implements KarmaScoreboard{
     }
 
     private void initTeams(){
-        if (config.getBoolean("hasranbefore")){
-            greenTeam = scoreboard.getTeam("karmaGreen");
-            neutralTeam = scoreboard.getTeam("karmaNeutral");
-            redTeam = scoreboard.getTeam("karmaRed");
-            yellowTeam = scoreboard.getTeam("karmaYellow");
-        } else {
+        try {
             greenTeam = scoreboard.registerNewTeam("karmaGreen");
             neutralTeam = scoreboard.registerNewTeam("karmaNeutral");
             redTeam = scoreboard.registerNewTeam("karmaRed");
@@ -41,6 +36,11 @@ public class VanillaScoreboard implements KarmaScoreboard{
             //Neutral Team Does Not Have Prefix
             redTeam.setPrefix(ChatColor.COLOR_CHAR + "c");
             yellowTeam.setPrefix(ChatColor.COLOR_CHAR + "");
+        } catch (IllegalArgumentException e) {
+            greenTeam = scoreboard.getTeam("karmaGreen");
+            neutralTeam = scoreboard.getTeam("karmaNeutral");
+            redTeam = scoreboard.getTeam("karmaRed");
+            yellowTeam = scoreboard.getTeam("karmaYellow");
         }
     }
 

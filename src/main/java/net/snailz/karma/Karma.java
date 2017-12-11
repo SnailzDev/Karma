@@ -24,8 +24,12 @@ public class Karma extends JavaPlugin{
 
     @Override
     public void onEnable(){
+        this.saveDefaultConfig();
+        CustomConfig messages = new CustomConfig("messages", this);
+        messages.saveDefaultCustomFile();
         dataStorage = dataStorageManager.getDataStorage();
         karmaUserManager = new KarmaUserManager(dataStorage);
+        karmaScoreboardManager = new KarmaScoreboardManager(this);
         karmaScoreboard = karmaScoreboardManager.getScoreboard();
 
         initListeners();
@@ -33,7 +37,7 @@ public class Karma extends JavaPlugin{
         KarmaAPI.getInstance().initAPI(karmaUserManager);
 
         KarmaConfig.initKarmaConfig(this.getConfig());
-        Messages.initMessages(new CustomConfig("messages", this));
+        Messages.initMessages(messages);
 
     }
 

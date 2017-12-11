@@ -53,9 +53,9 @@ public class KarmaConfig {
 
     private static void loadRanges() throws IllegalArgumentException{
         //Gets String From Config
-        String redRange = config.getString("karmaranges.red");
-        String neutralRange = config.getString("karmaranges.neutral");
-        String greenRange = config.getString("karmaranges.green");
+        String redRange = config.getString("karmalevels.red");
+        String neutralRange = config.getString("karmalevels.neutral");
+        String greenRange = config.getString("karmalevels.green");
 
         //Splits String with ~ and turns in to list of integers
         String[] redValuesStr = redRange.split("~");

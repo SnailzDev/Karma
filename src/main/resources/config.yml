@@ -1,7 +1,6 @@
 #DO NOT CHANGE ANY OF THESE
 #-------------------------------------
 version: 2.0
-hasranbefore: false
 #-------------------------------------
 
 #Can Be:
@@ -18,7 +17,7 @@ mysql:
 #Can Be:
 #  vanilla - Vanilla scoreboard
 #  vault - Group based scoreboard. Specify permission groups for each group below
-scoreboardmethod:
+scoreboardmethod: vanilla
 
 scoreboardgroups:
   red:
