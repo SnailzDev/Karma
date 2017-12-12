@@ -4,16 +4,14 @@ import net.snailz.karma.config.KarmaConfig;
 import net.snailz.karma.data.DataStorage;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.TreeSet;
-import java.util.UUID;
+import java.util.*;
 
 public class KarmaUserManager {
 
     private DataStorage dataStorage;
 
     private HashMap<UUID, KarmaUser> karmaUsersMap = new HashMap<>();
-    private TreeSet<KarmaUser> karmaUsers = new TreeSet<>();
+    private ArrayList<KarmaUser> karmaUsers = new ArrayList<>();
 
     public KarmaUserManager(DataStorage dataStorage){
         this.dataStorage = dataStorage;

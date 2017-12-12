@@ -2,11 +2,13 @@
 package net.snailz.karma;
 
 import net.snailz.karma.api.KarmaAPI;
+import net.snailz.karma.commands.AdminCommands;
 import net.snailz.karma.config.CustomConfig;
 import net.snailz.karma.config.KarmaConfig;
 import net.snailz.karma.config.Messages;
 import net.snailz.karma.data.DataStorage;
 import net.snailz.karma.data.DataStorageManager;
+import net.snailz.karma.listeners.DamageListener;
 import net.snailz.karma.listeners.JoinLeaveListeners;
 import net.snailz.karma.listeners.KillListener;
 import net.snailz.karma.scoreboard.KarmaScoreboard;
@@ -39,11 +41,14 @@ public class Karma extends JavaPlugin{
         KarmaConfig.initKarmaConfig(this.getConfig());
         Messages.initMessages(messages);
 
+        this.getCommand("karma").setExecutor(new AdminCommands(karmaUserManager));
+
     }
 
     private void initListeners(){
         this.getServer().getPluginManager().registerEvents(new JoinLeaveListeners(karmaUserManager), this);
         this.getServer().getPluginManager().registerEvents(new KillListener(karmaUserManager), this);
+        this.getServer().getPluginManager().registerEvents(new DamageListener(karmaUserManager), this);
     }
 
     @Override

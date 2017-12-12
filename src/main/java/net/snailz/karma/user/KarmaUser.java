@@ -9,31 +9,30 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 //Wrapper for Player
-public class KarmaUser {
+public class KarmaUser{
 
     private KarmaLevel karmaLevel;
     private int karma;
     private Player player;
 
     public static KarmaLevel karmaToKarmaLevel(int karma){
-        //Logic Here
-        throw new UnsupportedOperationException("Karma Level to Karma Not Added!");
-    }
-
-    public static int karmaLevelToKarma(KarmaLevel karmaLevel){
-        if(karmaLevel == KarmaLevel.YELLOW){
-            return 0;
+        if (KarmaConfig.greenKarma.contains(karma)){
+            return KarmaLevel.GREEN;
+        } else if (KarmaConfig.neutralKarma.contains(karma)){
+            return KarmaLevel.NEUTRAL;
+        } else if (KarmaConfig.redKarma.contains(karma)){
+            return KarmaLevel.GREEN.RED;
         }
-        //Logic Here
-        throw new UnsupportedOperationException("Karma To Karma Level Not Added!");
+        return null;
     }
 
-
-    public KarmaUser(Player player, int karma){
+    public KarmaUser(Player player, int karma) {
         this.player = player;
         this.karma = karma;
         this.karmaLevel = karmaToKarmaLevel(karma);
+
     }
+
 
     public Player getPlayer() {
         return player;
@@ -109,6 +108,5 @@ public class KarmaUser {
     public void setYellow(){
         setKarmaLevel(KarmaLevel.YELLOW);
     }
-
 
 }
