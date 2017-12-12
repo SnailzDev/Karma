@@ -78,8 +78,8 @@ public class KarmaUser{
     }
 
     public void setKarmaLevel(KarmaLevel karmaLevel){
-        Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
         this.karmaLevel = karmaLevel;
+        Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
     }
 
     private void updateKarmaLevel(){

@@ -19,7 +19,7 @@ public class AdminCommands implements CommandExecutor{
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("karma")){
-            if (args.length == 0 || args[0].equalsIgnoreCase("help")){
+            if (args.length <= 2 || args[0].equalsIgnoreCase("help")){
                 showHelpMenu(commandSender);
                 return true;
             }

@@ -11,6 +11,7 @@ import net.snailz.karma.data.DataStorageManager;
 import net.snailz.karma.listeners.DamageListener;
 import net.snailz.karma.listeners.JoinLeaveListeners;
 import net.snailz.karma.listeners.KillListener;
+import net.snailz.karma.runnables.YellowTimer;
 import net.snailz.karma.scoreboard.KarmaScoreboard;
 import net.snailz.karma.scoreboard.KarmaScoreboardManager;
 import net.snailz.karma.user.KarmaUserManager;
@@ -22,6 +23,7 @@ public class Karma extends JavaPlugin{
     private DataStorage dataStorage;
     private KarmaUserManager karmaUserManager;
     private KarmaScoreboardManager karmaScoreboardManager;
+    private YellowTimer yellowTimer;
     public static KarmaScoreboard karmaScoreboard;
 
     @Override
@@ -34,8 +36,6 @@ public class Karma extends JavaPlugin{
         karmaScoreboardManager = new KarmaScoreboardManager(this);
         karmaScoreboard = karmaScoreboardManager.getScoreboard();
 
-        initListeners();
-
         KarmaAPI.getInstance().initAPI(karmaUserManager);
 
         KarmaConfig.initKarmaConfig(this.getConfig());
@@ -43,12 +43,18 @@ public class Karma extends JavaPlugin{
 
         this.getCommand("karma").setExecutor(new AdminCommands(karmaUserManager));
 
+        //Init Yellow Timer
+        yellowTimer = new YellowTimer(karmaUserManager);
+        yellowTimer.runTaskTimerAsynchronously(this, 20L, 20L);
+
+        initListeners();
+
     }
 
     private void initListeners(){
         this.getServer().getPluginManager().registerEvents(new JoinLeaveListeners(karmaUserManager), this);
         this.getServer().getPluginManager().registerEvents(new KillListener(karmaUserManager), this);
-        this.getServer().getPluginManager().registerEvents(new DamageListener(karmaUserManager), this);
+        this.getServer().getPluginManager().registerEvents(new DamageListener(karmaUserManager, yellowTimer), this);
     }
 
     @Override
