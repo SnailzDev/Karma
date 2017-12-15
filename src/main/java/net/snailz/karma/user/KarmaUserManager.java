@@ -60,6 +60,7 @@ public class KarmaUserManager {
 
     public void saveAllKarma(){
         for (KarmaUser karmaUser : karmaUsers){
+            System.out.println("DEBUG: Saving " + karmaUser.getPlayer().getName());
             dataStorage.sterilize(karmaUser);
         }
     }

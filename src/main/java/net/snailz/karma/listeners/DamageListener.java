@@ -20,9 +20,12 @@ public class DamageListener implements Listener {
     }
 
 
-    //Yet To Be Implemented
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDamage(EntityDamageEvent e){
+        if (!(e.getEntity() instanceof Player)){
+            //Not player killer. Does it work with arrows, I dont know
+            return;
+        }
         KarmaUser killer = karmaUserManager.getKarmaUser(((Player) e.getEntity()).getUniqueId());
         yellowTimer.addKarmaUser(killer);
     }

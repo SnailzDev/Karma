@@ -16,6 +16,7 @@ public class FlatFileStorage implements DataStorage{
     public FlatFileStorage(Karma plugin){
         this.plugin = plugin;
         this.storageFile = new CustomConfig("karma", plugin);
+        storageFile.saveDefaultCustomFile();
     }
 
     @Override
