@@ -60,6 +60,7 @@ public class Karma extends JavaPlugin{
     @Override
     public void onDisable(){
         karmaUserManager.saveAllKarma();
+        karmaScoreboard.removeTeams();
     }
 
 }

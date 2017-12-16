@@ -79,12 +79,14 @@ public class KarmaUser{
 
     public void setKarmaLevel(KarmaLevel karmaLevel){
         this.karmaLevel = karmaLevel;
+        System.out.println("DEBUG: Karma Level = " + this.karmaLevel);
         Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
     }
 
     private void updateKarmaLevel(){
         boolean hasUpdated = false;
         if (KarmaConfig.greenKarma.contains(karma) && karmaLevel != KarmaLevel.GREEN){
+            System.out.println("DEBUG: karma = " + karma);
             Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
             karmaLevel = KarmaLevel.GREEN;
             hasUpdated = true;

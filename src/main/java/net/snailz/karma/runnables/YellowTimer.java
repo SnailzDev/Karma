@@ -21,6 +21,7 @@ public class YellowTimer extends BukkitRunnable{
     public YellowTimer(KarmaUserManager karmaUserManager){
         this.karmaUserManager = karmaUserManager;
         playerTimes = new HashMap<>();
+        players = new TreeSet<>();
     }
 
     public void addKarmaUser(KarmaUser karmaUser){
@@ -30,6 +31,9 @@ public class YellowTimer extends BukkitRunnable{
     }
     @Override
     public void run() {
+        if (players.isEmpty()){
+            return;
+        }
         for (UUID player : players){
             playerTimes.put(player, playerTimes.get(player) - 1);
             if (playerTimes.get(player) == 0){

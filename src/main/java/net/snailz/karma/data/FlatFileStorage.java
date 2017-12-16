@@ -22,6 +22,7 @@ public class FlatFileStorage implements DataStorage{
     @Override
     public void sterilize(KarmaUser user) {
         storageFile.getCustomFile().set(user.getPlayer().getUniqueId().toString(), user.getKarma());
+        storageFile.saveCustomFile();
     }
 
     @Override

@@ -28,4 +28,9 @@ public class VaultScoreboard implements KarmaScoreboard{
     public String getScoreboardMethod() {
         return "VaultScoreboard";
     }
+
+    @Override
+    public void removeTeams(){
+
+    }
 }

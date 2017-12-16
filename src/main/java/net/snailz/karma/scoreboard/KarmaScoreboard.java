@@ -12,4 +12,6 @@ public interface KarmaScoreboard {
     void clearScore(KarmaUser karmaUser);
 
     String getScoreboardMethod();
+
+    void removeTeams();
 }

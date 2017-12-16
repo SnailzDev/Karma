@@ -22,7 +22,7 @@ public class KarmaLevelChangeEvent extends Event{
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlers;
     }
 
 

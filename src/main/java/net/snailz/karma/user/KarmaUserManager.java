@@ -59,6 +59,8 @@ public class KarmaUserManager {
     }
 
     public void saveAllKarma(){
+        System.out.println("Saving Karma...");
+        System.out.println("DEBUG: karmaUsers is " + karmaUsers.size());
         for (KarmaUser karmaUser : karmaUsers){
             System.out.println("DEBUG: Saving " + karmaUser.getPlayer().getName());
             dataStorage.sterilize(karmaUser);
