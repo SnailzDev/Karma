@@ -28,12 +28,17 @@ scoreboardgroups:
 prefix: "[Karma]"
 
 defaultkarma: 0
-#Specify the levels of each karma. Use ~ the same way you would use a - to specify a range. Please go greater to lesser
+#Specify the levels of each karma. Use ~ the same way you would use a - to specify a range. Please go greater to lesser. You can also use <, >, or =
 karmalevels:
   red: -3~-1
   #TO HAVE NEUTRAL 0 the 0~0 is required
   neutral: 0~0
   green: 1~3
+
+  #Alternate ranges
+  #red: <-1
+  #neutral: =0
+  #green: >1
 
 karmachanges:
   #killer
