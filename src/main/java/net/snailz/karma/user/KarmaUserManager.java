@@ -27,7 +27,7 @@ public class KarmaUserManager {
     }
 
     public void addNewKarmaUser(Player player){
-        KarmaUser karmaUser = new KarmaUser(player, KarmaConfig.defaultKarma);
+        KarmaUser karmaUser = new KarmaUser(player, KarmaConfig.getInstance().defaultKarma);
         karmaUsers.add(karmaUser);
         karmaUsersMap.put(player.getUniqueId(), karmaUser);
         dataStorage.addNewKarmaUser(karmaUser);

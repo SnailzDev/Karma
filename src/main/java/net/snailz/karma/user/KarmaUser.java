@@ -15,21 +15,12 @@ public class KarmaUser{
     private int karma;
     private Player player;
 
-    public static KarmaLevel karmaToKarmaLevel(int karma){
-        if (KarmaConfig.greenKarma.contains(karma)){
-            return KarmaLevel.GREEN;
-        } else if (KarmaConfig.neutralKarma.contains(karma)){
-            return KarmaLevel.NEUTRAL;
-        } else if (KarmaConfig.redKarma.contains(karma)){
-            return KarmaLevel.GREEN.RED;
-        }
-        return null;
-    }
+    private String prefix;
 
     public KarmaUser(Player player, int karma) {
         this.player = player;
         this.karma = karma;
-        this.karmaLevel = karmaToKarmaLevel(karma);
+        this.karmaLevel = KarmaConfig.getInstance().getKarmaLevel(karma);
 
     }
 
@@ -53,6 +44,11 @@ public class KarmaUser{
 
     public void addKarma(int karma){
         this.karma = this.karma + karma;
+        if (this.karma >= KarmaConfig.getInstance().maxKarma){
+            this.karma = KarmaConfig.getInstance().maxKarma;
+        } else if (this.karma <= KarmaConfig.getInstance().minKarma){
+            this.karma = KarmaConfig.getInstance().minKarma;
+        }
         this.updateKarmaLevel();
     }
 
@@ -69,9 +65,9 @@ public class KarmaUser{
         //Checking if it was canceled before send messages. I don't know much about the Event API so this may be wrong
         if (!karmaKillChangeEvent.isCancelled()){
             if (karma > oldKarma) {
-                this.getPlayer().sendMessage(KarmaConfig.prefix + Messages.getKarmaGain(karma));
+                this.getPlayer().sendMessage(prefix + Messages.getInstance().getKarmaGain(karma));
             } else if (karma < oldKarma){
-                this.getPlayer().sendMessage(KarmaConfig.prefix + Messages.getKarmaLoss(karma));
+                this.getPlayer().sendMessage(prefix + Messages.getInstance().getKarmaLoss(karma));
             }
             updateKarmaLevel();
         }
@@ -85,22 +81,28 @@ public class KarmaUser{
 
     private void updateKarmaLevel(){
         boolean hasUpdated = false;
-        if (KarmaConfig.greenKarma.contains(karma) && karmaLevel != KarmaLevel.GREEN){
-            System.out.println("DEBUG: karma = " + karma);
-            Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
-            karmaLevel = KarmaLevel.GREEN;
-            hasUpdated = true;
-        } else if (KarmaConfig.neutralKarma.contains(karma) && karmaLevel != KarmaLevel.NEUTRAL){
-            Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
-            karmaLevel = KarmaLevel.NEUTRAL;
-            hasUpdated = true;
-        } else if (KarmaConfig.redKarma.contains(karma) && karmaLevel != KarmaLevel.RED){
-            Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
-            karmaLevel = KarmaLevel.RED;
-            hasUpdated = true;
+        KarmaLevel oldKarmaLevel = karmaLevel;
+        switch (KarmaConfig.getInstance().getKarmaLevel(karma)){
+            case GREEN:
+                if (karmaLevel != KarmaLevel.GREEN){
+                    hasUpdated = true;
+                    karmaLevel = KarmaLevel.GREEN;
+                }
+            case NEUTRAL:
+                if (karmaLevel != KarmaLevel.NEUTRAL){
+                    hasUpdated = true;
+                    karmaLevel = KarmaLevel.NEUTRAL;
+                }
+            case RED:
+                if (karmaLevel != KarmaLevel.RED){
+                    hasUpdated = true;
+                    karmaLevel = KarmaLevel.RED;
+                }
         }
-        //Yes, this works
-        if (hasUpdated) updateScoreBoard();
+        if (hasUpdated){
+            updateScoreBoard();
+            Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, oldKarmaLevel));
+        }
     }
 
     private void updateScoreBoard(){

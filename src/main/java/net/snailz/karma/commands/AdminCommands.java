@@ -13,8 +13,13 @@ import org.bukkit.entity.Player;
 public class AdminCommands implements CommandExecutor{
 
     KarmaUserManager karmaUserManager;
+    KarmaConfig karmaConfig;
+    Messages messages;
+
     public AdminCommands(KarmaUserManager karmaUserManager){
         this.karmaUserManager = karmaUserManager;
+        this.karmaConfig = KarmaConfig.getInstance();
+        this.messages = Messages.getInstance();
     }
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
@@ -30,9 +35,9 @@ public class AdminCommands implements CommandExecutor{
                     showHelpMenu(commandSender);
                     return true;
                 }
-                karmaUserManager.getKarmaUser(player).setKarma(KarmaConfig.defaultKarma);
-                commandSender.sendMessage(KarmaConfig.prefix + Messages.getKarmaResetSender(player.getDisplayName(), KarmaConfig.defaultKarma));
-                player.sendMessage(KarmaConfig.prefix + Messages.getKarmaResetReceiver(player.getDisplayName(), KarmaConfig.defaultKarma));
+                karmaUserManager.getKarmaUser(player).setKarma(karmaConfig.defaultKarma);
+                commandSender.sendMessage(karmaConfig.prefix + messages.getKarmaResetSender(player.getDisplayName(), karmaConfig.defaultKarma));
+                player.sendMessage(karmaConfig.prefix + messages.getKarmaResetReceiver(player.getDisplayName(), karmaConfig.defaultKarma));
                 return true;
             } else if (args[0].equalsIgnoreCase("add")){
                 String playerName = args[1];
@@ -49,8 +54,8 @@ public class AdminCommands implements CommandExecutor{
                     showIllegalKarma(commandSender);
                     return true;
                 }
-                commandSender.sendMessage(KarmaConfig.prefix + Messages.getKarmaAddSender(player.getDisplayName(), karma));
-                player.sendMessage(KarmaConfig.prefix + Messages.getKarmaAddReceiver(player.getDisplayName(), karma));
+                commandSender.sendMessage(karmaConfig.prefix + messages.getKarmaAddSender(player.getDisplayName(), karma));
+                player.sendMessage(karmaConfig.prefix + messages.getKarmaAddReceiver(player.getDisplayName(), karma));
                 karmaUser.addKarma(karma);
                 return true;
             } else if (args[0].equalsIgnoreCase("remove")){
@@ -69,8 +74,8 @@ public class AdminCommands implements CommandExecutor{
                     return true;
                 }
                 karmaUser.removeKarma(karma);
-                commandSender.sendMessage(KarmaConfig.prefix + Messages.getKarmaRemoveSender(player.getDisplayName(), karma));
-                player.sendMessage(KarmaConfig.prefix + Messages.getKarmaRemoveReceiver(player.getDisplayName(), karma));
+                commandSender.sendMessage(karmaConfig.prefix + messages.getKarmaRemoveSender(player.getDisplayName(), karma));
+                player.sendMessage(karmaConfig.prefix + messages.getKarmaRemoveReceiver(player.getDisplayName(), karma));
                 return true;
             }
         }
@@ -78,7 +83,7 @@ public class AdminCommands implements CommandExecutor{
     }
 
     private void showIllegalKarma(CommandSender sender){
-        sender.sendMessage(KarmaConfig.prefix + Messages.getIllegalKarmaAmmount());
+        sender.sendMessage(karmaConfig.prefix + messages.getIllegalKarmaAmmount());
     }
     private void showHelpMenu(CommandSender sender){
         sender.sendMessage("Karma Help Menu Not Yet Implemented");

@@ -17,15 +17,17 @@ public class YellowTimer extends BukkitRunnable{
     private HashMap<UUID, Integer> playerTimes;
     private HashMap<UUID, KarmaLevel> oldKarmaLevel;
     private TreeSet<UUID> players;
+    private int yellowTime;
 
     public YellowTimer(KarmaUserManager karmaUserManager){
         this.karmaUserManager = karmaUserManager;
         playerTimes = new HashMap<>();
         players = new TreeSet<>();
+        yellowTime = KarmaConfig.getInstance().yellowTime;
     }
 
     public void addKarmaUser(KarmaUser karmaUser){
-        playerTimes.put(karmaUser.getPlayer().getUniqueId(), KarmaConfig.yellowTime);
+        playerTimes.put(karmaUser.getPlayer().getUniqueId(), yellowTime);
         oldKarmaLevel.put(karmaUser.getPlayer().getUniqueId(), karmaUser.getKarmaLevel());
         karmaUser.setYellow();
     }

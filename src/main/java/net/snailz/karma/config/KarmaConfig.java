@@ -9,36 +9,55 @@ import java.util.ArrayList;
 
 public class KarmaConfig {
 
-    public static String prefix;
+    private static KarmaConfig karmaConfig = new KarmaConfig();
 
-    public static int defaultKarma;
+    private KarmaConfig(){
 
-    public static boolean yellowEnabled;
-    public static int yellowTime;
+    }
 
-    private static FileConfiguration config;
+    public static KarmaConfig getInstance(){
+        return karmaConfig;
+    }
+
+    public String prefix;
+
+    public int defaultKarma;
+
+    public boolean yellowEnabled;
+    public int yellowTime;
+
+    public int maxKarma;
+    public int minKarma;
+
+    private FileConfiguration config;
 
     /*
     0 = Red Karma Change
     1 = Neutral Karma Change
     2 = Green Karma Change
     */
-    private static int[] redKarmaChange;
-    private static int[] neutralKarmaChange;
-    private static int[] greenKarmaChange;
+    private int[] redKarmaChange;
+    private int[] neutralKarmaChange;
+    private int[] greenKarmaChange;
 
-    public static void initKarmaConfig(FileConfiguration config_instance){
+    private int minRedKarma;
+    private int minGreenKarma;
+    private int[] rangeNeutralKarma;
+
+    public void initKarmaConfig(FileConfiguration config_instance){
         config = config_instance;
         prefix = ChatColor.translateAlternateColorCodes('&', config.getString("prefix")) + " ";
         defaultKarma = config.getInt("defaultkarma");
         yellowEnabled = config.getBoolean("yellowplayers.enabled");
         yellowTime = config.getInt("yellowplayers.time");
+        maxKarma = config.getInt("maxkarmalevels.max");
+        minKarma = config.getInt("maxkarmalevels.min");
 
         loadRanges();
         loadKarmaChages();
     }
 
-    private static void loadKarmaChages(){
+    private void loadKarmaChages(){
         redKarmaChange = new int[]{config.getInt("karmachanges.red.red"), config.getInt("karmachanges.red.neutral"),
                 config.getInt("karmachanges.red.green")};
         neutralKarmaChange = new int[]{config.getInt("karmachanges.neutral.red"), config.getInt("karmachanges.neutral.neutral"),
@@ -47,11 +66,17 @@ public class KarmaConfig {
                 config.getInt("karmachanges.green.green")};
     }
 
-    private static void loadRanges() throws IllegalArgumentException{
-        //Parsing code here
+    private void loadRanges(){
+        minRedKarma = config.getInt("karmalevels.red");
+        minGreenKarma = config.getInt("karmalevels.green");
+
+        String neutralKarma = config.getString("karmalevels.neutral");
+        String[] neutralKarmaSplit = neutralKarma.split("~");
+        rangeNeutralKarma[0] = Integer.parseInt(neutralKarmaSplit[0]);
+        rangeNeutralKarma[1] = Integer.parseInt(neutralKarmaSplit[1]);
     }
 
-    public static int getKarmaChange(KarmaLevel killer, KarmaLevel killed){
+    public int getKarmaChange(KarmaLevel killer, KarmaLevel killed){
         int karmaChange;
 
         switch (killer){
@@ -88,7 +113,14 @@ public class KarmaConfig {
 
     }
 
-    public static KarmaLevel getKarmaLevel(int karma){
-        //Karma to KarmaLevel code here
+    public KarmaLevel getKarmaLevel(int karma){
+        if (karma <= minRedKarma){
+            return KarmaLevel.RED;
+        } else if (karma >= minGreenKarma){
+            return KarmaLevel.GREEN;
+        } else if (karma >= neutralKarmaChange[0] && karma <= neutralKarmaChange[1]){
+            return KarmaLevel.NEUTRAL;
+        }
+        return null;
     }
 }

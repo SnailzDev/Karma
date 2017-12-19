@@ -1,6 +1,7 @@
 package net.snailz.karma.data;
 
 import net.snailz.karma.Karma;
+import net.snailz.karma.config.KarmaConfig;
 
 public class DataStorageManager {
 

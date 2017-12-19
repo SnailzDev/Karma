@@ -38,8 +38,8 @@ public class Karma extends JavaPlugin{
 
         KarmaAPI.getInstance().initAPI(karmaUserManager);
 
-        KarmaConfig.initKarmaConfig(this.getConfig());
-        Messages.initMessages(messages);
+        KarmaConfig.getInstance().initKarmaConfig(this.getConfig());
+        Messages.getInstance().initMessages(messages);
 
         this.getCommand("karma").setExecutor(new AdminCommands(karmaUserManager));
 

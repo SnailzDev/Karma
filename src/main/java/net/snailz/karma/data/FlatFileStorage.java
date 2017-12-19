@@ -35,7 +35,7 @@ public class FlatFileStorage implements DataStorage{
 
     @Override
     public void addNewKarmaUser(KarmaUser karmaUser) {
-        storageFile.getCustomFile().set(karmaUser.getPlayer().getUniqueId().toString(), KarmaConfig.defaultKarma);
+        storageFile.getCustomFile().set(karmaUser.getPlayer().getUniqueId().toString(), KarmaConfig.getInstance().defaultKarma);
     }
 
     @Override

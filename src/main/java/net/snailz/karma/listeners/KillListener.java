@@ -21,7 +21,7 @@ public class KillListener implements Listener{
     public void onPlayerKill(PlayerDeathEvent e){
         KarmaUser killed = karmaUserManager.getKarmaUser(e.getEntity().getUniqueId());
         KarmaUser killer = karmaUserManager.getKarmaUser(e.getEntity().getKiller().getUniqueId());
-        int karmaChange = KarmaConfig.getKarmaChange(killer.getKarmaLevel(), killed.getKarmaLevel());
+        int karmaChange = KarmaConfig.getInstance().getKarmaChange(killer.getKarmaLevel(), killed.getKarmaLevel());
         killer.changeKarma(karmaChange, killed);
     }
 }
