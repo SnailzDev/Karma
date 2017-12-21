@@ -27,16 +27,18 @@ public class VanillaScoreboard implements KarmaScoreboard{
 
     private void initTeams(){
         try {
+            System.out.println("DEBUG: Creating New Teams");
             greenTeam = scoreboard.registerNewTeam("karmaGreen");
             neutralTeam = scoreboard.registerNewTeam("karmaNeutral");
             redTeam = scoreboard.registerNewTeam("karmaRed");
             yellowTeam = scoreboard.registerNewTeam("karmaYellow");
 
-            greenTeam.setPrefix(ChatColor.COLOR_CHAR + "2");
+            greenTeam.setPrefix(ChatColor.GREEN.toString());
             //Neutral Team Does Not Have Prefix
-            redTeam.setPrefix(ChatColor.COLOR_CHAR + "c");
-            yellowTeam.setPrefix(ChatColor.COLOR_CHAR + "e");
+            redTeam.setPrefix(ChatColor.RED.toString());
+            yellowTeam.setPrefix(ChatColor.YELLOW.toString());
         } catch (IllegalArgumentException e) {
+            System.out.println("DEBUG: Applying Already Created Teams.");
             greenTeam = scoreboard.getTeam("karmaGreen");
             neutralTeam = scoreboard.getTeam("karmaNeutral");
             redTeam = scoreboard.getTeam("karmaRed");
@@ -44,6 +46,7 @@ public class VanillaScoreboard implements KarmaScoreboard{
         }
     }
 
+    @Override
     public void removeTeams(){
         greenTeam.unregister();
         neutralTeam.unregister();
@@ -54,6 +57,8 @@ public class VanillaScoreboard implements KarmaScoreboard{
     @Override
     public void setScore(KarmaUser karmaUser) {
         KarmaLevel karmaLevel = karmaUser.getKarmaLevel();
+        System.out.println("DEBUG: Karma Level = " + karmaLevel);
+        clearScore(karmaUser);
         switch (karmaLevel){
             case GREEN:
                 greenTeam.addPlayer(karmaUser.getPlayer());

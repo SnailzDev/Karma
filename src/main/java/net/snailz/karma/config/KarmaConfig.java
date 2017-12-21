@@ -26,6 +26,7 @@ public class KarmaConfig {
     public boolean yellowEnabled;
     public int yellowTime;
 
+    public boolean maxMinEnabled;
     public int maxKarma;
     public int minKarma;
 
@@ -52,6 +53,7 @@ public class KarmaConfig {
         yellowTime = config.getInt("yellowplayers.time");
         maxKarma = config.getInt("maxkarmalevels.max");
         minKarma = config.getInt("maxkarmalevels.min");
+        maxMinEnabled = config.getBoolean("maxkarmalevels.enabled");
 
         loadRanges();
         loadKarmaChages();
@@ -72,8 +74,7 @@ public class KarmaConfig {
 
         String neutralKarma = config.getString("karmalevels.neutral");
         String[] neutralKarmaSplit = neutralKarma.split("~");
-        rangeNeutralKarma[0] = Integer.parseInt(neutralKarmaSplit[0]);
-        rangeNeutralKarma[1] = Integer.parseInt(neutralKarmaSplit[1]);
+        rangeNeutralKarma = new int[]{Integer.parseInt(neutralKarmaSplit[0]), Integer.parseInt(neutralKarmaSplit[1])};
     }
 
     public int getKarmaChange(KarmaLevel killer, KarmaLevel killed){
@@ -114,11 +115,17 @@ public class KarmaConfig {
     }
 
     public KarmaLevel getKarmaLevel(int karma){
+        System.out.println("DEBUG: Min Green Karma = " + minGreenKarma);
+        System.out.println("DEBUG: Min Red Karma = " + minGreenKarma);
+        System.out.println("DEBUG: Min Neutral = " + rangeNeutralKarma[0] + " ; Max Neutral = " + rangeNeutralKarma[1]);
+        System.out.println("DEBUG: green calc: " + karma + ">=" +  minGreenKarma);
+        System.out.println("DEBUG: red calc: " + karma + "<=" +  minRedKarma);
+        System.out.println("DEBUG: neutral calc: " + karma + ">=" + rangeNeutralKarma[0] + "&&" + karma + "<=" + rangeNeutralKarma[1]);
         if (karma <= minRedKarma){
             return KarmaLevel.RED;
         } else if (karma >= minGreenKarma){
             return KarmaLevel.GREEN;
-        } else if (karma >= neutralKarmaChange[0] && karma <= neutralKarmaChange[1]){
+        } else if (karma >= rangeNeutralKarma[0] && karma <= rangeNeutralKarma[1]){
             return KarmaLevel.NEUTRAL;
         }
         return null;
