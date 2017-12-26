@@ -62,12 +62,20 @@ public class VanillaScoreboard implements KarmaScoreboard{
         switch (karmaLevel){
             case GREEN:
                 greenTeam.addPlayer(karmaUser.getPlayer());
+                System.out.println("(SB) DEBUG: " + karmaUser.getPlayer().getDisplayName() + " Green");
+                break;
             case NEUTRAL:
                 neutralTeam.addPlayer(karmaUser.getPlayer());
+                System.out.println("(SB) DEBUG: " + karmaUser.getPlayer().getDisplayName() + " Neutral");
+                break;
             case RED:
                 redTeam.addPlayer(karmaUser.getPlayer());
+                System.out.println("(SB) DEBUG: " + karmaUser.getPlayer().getDisplayName() + " Red");
+                break;
             case YELLOW:
                 yellowTeam.addPlayer(karmaUser.getPlayer());
+                System.out.println("(SB) DEBUG: " + karmaUser.getPlayer().getDisplayName() + " Yellow");
+                break;
         }
     }
 
@@ -83,13 +91,17 @@ public class VanillaScoreboard implements KarmaScoreboard{
     @Override
     public void clearScore(KarmaUser karmaUser) {
         if (greenTeam.hasPlayer(karmaUser.getPlayer())){
+            System.out.println("(SB) DEBUG: Clearing " + karmaUser.getPlayer().getDisplayName() + " Green");
             greenTeam.removePlayer(karmaUser.getPlayer());
         } else if (neutralTeam.hasPlayer(karmaUser.getPlayer())){
+            System.out.println("(SB) DEBUG: Clearing " + karmaUser.getPlayer().getDisplayName() + " Neutral");
             neutralTeam.removePlayer(karmaUser.getPlayer());
         } else if (redTeam.hasPlayer(karmaUser.getPlayer())){
+            System.out.println("(SB) DEBUG: Clearing" + karmaUser.getPlayer().getDisplayName() + " Red");
             redTeam.removePlayer(karmaUser.getPlayer());
         } else if (yellowTeam.hasPlayer(karmaUser.getPlayer())){
             yellowTeam.hasPlayer(karmaUser.getPlayer());
+            System.out.println("(SB) DEBUG: Clearing " + karmaUser.getPlayer().getDisplayName() + " Yellow");
         }
     }
 

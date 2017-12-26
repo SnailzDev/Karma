@@ -39,11 +39,19 @@ public class KarmaUser{
 
     public void removeKarma(int karma){
         this.karma = this.karma - karma;
+        if (KarmaConfig.getInstance().maxMinEnabled) {
+            if (this.karma >= KarmaConfig.getInstance().maxKarma) {
+                this.karma = KarmaConfig.getInstance().maxKarma;
+            } else if (this.karma <= KarmaConfig.getInstance().minKarma) {
+                this.karma = KarmaConfig.getInstance().minKarma;
+            }
+        }
         this.updateKarmaLevel();
+
     }
 
     public void addKarma(int karma){
-        System.out.println("add karma. Karma = " + karma);
+        System.out.println("(KU) add karma. Karma = " + karma);
         this.karma = this.karma + karma;
         if (KarmaConfig.getInstance().maxMinEnabled) {
             if (this.karma >= KarmaConfig.getInstance().maxKarma) {
@@ -78,29 +86,32 @@ public class KarmaUser{
 
     public void setKarmaLevel(KarmaLevel karmaLevel){
         this.karmaLevel = karmaLevel;
-        System.out.println("DEBUG: Karma Level = " + this.karmaLevel);
+        System.out.println("(KU) DEBUG: Karma Level = " + this.karmaLevel);
         Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
     }
     private void updateKarmaLevel(){
         boolean hasUpdated = false;
         KarmaLevel oldKarmaLevel = karmaLevel;
-        System.out.println("karma = " + karma);
+        System.out.println("(KU) karma = " + karma);
         switch (KarmaConfig.getInstance().getKarmaLevel(karma)){
             case GREEN:
                 if (karmaLevel != KarmaLevel.GREEN){
                     hasUpdated = true;
                     karmaLevel = KarmaLevel.GREEN;
                 }
+                break;
             case NEUTRAL:
                 if (karmaLevel != KarmaLevel.NEUTRAL){
                     hasUpdated = true;
                     karmaLevel = KarmaLevel.NEUTRAL;
                 }
+                break;
             case RED:
                 if (karmaLevel != KarmaLevel.RED){
                     hasUpdated = true;
                     karmaLevel = KarmaLevel.RED;
                 }
+                break;
         }
         if (hasUpdated){
             updateScoreBoard();

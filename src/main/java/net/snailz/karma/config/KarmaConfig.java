@@ -4,8 +4,6 @@ import net.snailz.karma.user.KarmaLevel;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.ArrayList;
-
 
 public class KarmaConfig {
 
@@ -115,17 +113,20 @@ public class KarmaConfig {
     }
 
     public KarmaLevel getKarmaLevel(int karma){
-        System.out.println("DEBUG: Min Green Karma = " + minGreenKarma);
-        System.out.println("DEBUG: Min Red Karma = " + minGreenKarma);
-        System.out.println("DEBUG: Min Neutral = " + rangeNeutralKarma[0] + " ; Max Neutral = " + rangeNeutralKarma[1]);
-        System.out.println("DEBUG: green calc: " + karma + ">=" +  minGreenKarma);
-        System.out.println("DEBUG: red calc: " + karma + "<=" +  minRedKarma);
-        System.out.println("DEBUG: neutral calc: " + karma + ">=" + rangeNeutralKarma[0] + "&&" + karma + "<=" + rangeNeutralKarma[1]);
+        System.out.println("(KC) DEBUG: Min Green Karma = " + minGreenKarma);
+        System.out.println("(KC) DEBUG: Min Red Karma = " + minGreenKarma);
+        System.out.println("(KC) DEBUG: Min Neutral = " + rangeNeutralKarma[0] + " ; Max Neutral = " + rangeNeutralKarma[1]);
+        System.out.println("(KC) DEBUG: green calc: " + karma + ">=" + minGreenKarma);
+        System.out.println("(KC) DEBUG: red calc: " + karma + "<=" + minRedKarma);
+        System.out.println("(KC) DEBUG: neutral calc: " + karma + ">=" + rangeNeutralKarma[0] + "&&" + karma + "<=" + rangeNeutralKarma[1]);
         if (karma <= minRedKarma){
+            System.out.println("(KC) Returning Red");
             return KarmaLevel.RED;
         } else if (karma >= minGreenKarma){
+            System.out.println("(KC) Returning Green");
             return KarmaLevel.GREEN;
         } else if (karma >= rangeNeutralKarma[0] && karma <= rangeNeutralKarma[1]){
+            System.out.println("(KC) Returning Neutral");
             return KarmaLevel.NEUTRAL;
         }
         return null;
