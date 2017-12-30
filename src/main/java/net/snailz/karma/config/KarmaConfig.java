@@ -48,7 +48,7 @@ public class KarmaConfig {
         prefix = ChatColor.translateAlternateColorCodes('&', config.getString("prefix")) + " ";
         defaultKarma = config.getInt("defaultkarma");
         yellowEnabled = config.getBoolean("yellowplayers.enabled");
-        yellowTime = config.getInt("yellowplayers.time");
+        yellowTime = config.getInt("yellowplayers.duration");
         maxKarma = config.getInt("maxkarmalevels.max");
         minKarma = config.getInt("maxkarmalevels.min");
         maxMinEnabled = config.getBoolean("maxkarmalevels.enabled");

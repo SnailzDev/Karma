@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class DamageListener implements Listener {
 
@@ -21,12 +21,12 @@ public class DamageListener implements Listener {
 
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerDamage(EntityDamageEvent e){
-        if (!(e.getEntity() instanceof Player)){
+    public void onPlayerDamage(EntityDamageByEntityEvent e) {
+        if (!(e.getDamager() instanceof Player)) {
             //Not player killer. Does it work with arrows, I dont know
             return;
         }
-        KarmaUser killer = karmaUserManager.getKarmaUser(((Player) e.getEntity()).getUniqueId());
-        yellowTimer.addKarmaUser(killer);
+        KarmaUser damager = karmaUserManager.getKarmaUser((Player) e.getDamager());
+        yellowTimer.addKarmaUser(damager);
     }
 }

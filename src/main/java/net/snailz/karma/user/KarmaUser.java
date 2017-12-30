@@ -88,6 +88,7 @@ public class KarmaUser{
         this.karmaLevel = karmaLevel;
         System.out.println("(KU) DEBUG: Karma Level = " + this.karmaLevel);
         Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
+        updateScoreBoard();
     }
     private void updateKarmaLevel(){
         boolean hasUpdated = false;
