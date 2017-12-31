@@ -22,7 +22,7 @@ public class DamageListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDamage(EntityDamageByEntityEvent e) {
-        if (!(e.getDamager() instanceof Player)) {
+        if (!(e.getDamager() instanceof Player) || !(e.getEntity() instanceof Player)) {
             //Not player killer. Does it work with arrows, I dont know
             return;
         }

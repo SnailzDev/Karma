@@ -4,7 +4,9 @@ import net.snailz.karma.config.KarmaConfig;
 import net.snailz.karma.data.DataStorage;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class KarmaUserManager {
 
@@ -59,10 +61,10 @@ public class KarmaUserManager {
     }
 
     public void saveAllKarma(){
-        System.out.println("Saving Karma...");
-        System.out.println("DEBUG: karmaUsers is " + karmaUsers.size());
+        System.out.println("(KUM) Saving Karma...");
+        System.out.println("(KUM) DEBUG: karmaUsers is " + karmaUsers.size());
         for (KarmaUser karmaUser : karmaUsers){
-            System.out.println("DEBUG: Saving " + karmaUser.getPlayer().getName());
+            System.out.println("(KUM) DEBUG: Saving " + karmaUser.getPlayer().getName());
             dataStorage.sterilize(karmaUser);
         }
     }

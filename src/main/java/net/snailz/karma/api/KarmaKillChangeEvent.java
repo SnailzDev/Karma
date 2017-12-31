@@ -24,7 +24,7 @@ public class KarmaKillChangeEvent extends Event implements Cancellable{
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlers;
     }
 
     @Override
