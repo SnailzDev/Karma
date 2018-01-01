@@ -11,8 +11,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 public class DamageListener implements Listener {
 
-    KarmaUserManager karmaUserManager;
-    YellowTimer yellowTimer;
+    private KarmaUserManager karmaUserManager;
+    private YellowTimer yellowTimer;
 
     public DamageListener(KarmaUserManager karmaUserManager, YellowTimer yellowTimer){
         this.karmaUserManager = karmaUserManager;

@@ -43,7 +43,6 @@ public class YellowTimer extends BukkitRunnable{
     }
     @Override
     public void run() {
-        System.out.println("(YT) [RUN] Is Running!");
         for (UUID player : players){
             System.out.println("(YT) [RUN] " + player);
             System.out.println("(YT) [RUN] player time = " + playerTimes.get(player));

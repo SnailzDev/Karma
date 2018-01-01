@@ -11,17 +11,23 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class KillListener implements Listener{
 
-    KarmaUserManager karmaUserManager;
+    private KarmaUserManager karmaUserManager;
 
     public KillListener(KarmaUserManager karmaUserManager){
+        System.out.println("(KL) Constructor running!");
         this.karmaUserManager = karmaUserManager;
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerKill(PlayerDeathEvent e){
+        System.out.println("(KL) PlayerDeathEvent triggered!");
+        if (!(e.getEntity().getKiller() instanceof Player) || e.getEntity().getKiller() == null) {
+            return;
+        }
         KarmaUser killed = karmaUserManager.getKarmaUser(e.getEntity().getUniqueId());
         KarmaUser killer = karmaUserManager.getKarmaUser(e.getEntity().getKiller().getUniqueId());
         int karmaChange = KarmaConfig.getInstance().getKarmaChange(killer.getKarmaLevel(), killed.getKarmaLevel());
+        System.out.println("(KL) karma change = " + karmaChange);
         killer.changeKarma(karmaChange, killed);
     }
 }

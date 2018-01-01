@@ -43,7 +43,6 @@ public class Karma extends JavaPlugin{
 
         this.getCommand("karma").setExecutor(new AdminCommands(karmaUserManager));
 
-        //Init Yellow Timer
         yellowTimer = new YellowTimer(karmaUserManager);
         yellowTimer.runTaskTimerAsynchronously(this, 20L, 20L);
 

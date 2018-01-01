@@ -76,7 +76,6 @@ public class KarmaConfig {
     }
 
     public int getKarmaChange(KarmaLevel killer, KarmaLevel killed){
-        int karmaChange;
 
         switch (killer){
             case RED:
@@ -106,9 +105,9 @@ public class KarmaConfig {
                     case GREEN:
                         return greenKarmaChange[2];
                 }
+            default:
+                return 0;
         }
-
-        return 0;
 
     }
 
