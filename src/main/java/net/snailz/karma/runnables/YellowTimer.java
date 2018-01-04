@@ -15,7 +15,6 @@ public class YellowTimer extends BukkitRunnable{
     private KarmaUserManager karmaUserManager;
 
     private HashMap<UUID, Integer> playerTimes;
-    private HashMap<UUID, KarmaLevel> oldKarmaLevel;
     private TreeSet<UUID> players;
     private TreeSet<UUID> playersToRemove;
     private int yellowTime;
@@ -23,7 +22,6 @@ public class YellowTimer extends BukkitRunnable{
     public YellowTimer(KarmaUserManager karmaUserManager){
         this.karmaUserManager = karmaUserManager;
         playerTimes = new HashMap<>();
-        oldKarmaLevel = new HashMap<>();
         players = new TreeSet<>();
         playersToRemove = new TreeSet<>();
         yellowTime = KarmaConfig.getInstance().yellowTime;
@@ -34,9 +32,6 @@ public class YellowTimer extends BukkitRunnable{
         System.out.println("(YT) YellowTime = " + yellowTime);
         if (karmaUser == null) {
             System.out.println("(YT) KarmaUser == null");
-        }
-        if (oldKarmaLevel.get(karmaUser.getPlayer().getUniqueId()) == null) {
-            oldKarmaLevel.put(karmaUser.getPlayer().getUniqueId(), karmaUser.getKarmaLevel());
         }
         players.add(karmaUser.getPlayer().getUniqueId());
         karmaUser.setYellow();
@@ -58,9 +53,8 @@ public class YellowTimer extends BukkitRunnable{
             System.out.println("(YT) Removing " + player);
             //Checks if player is still yellow because when they kill a player they are no longer yellow and might have a new karma level
             if (karmaUserManager.getKarmaUser(player).getKarmaLevel() == KarmaLevel.YELLOW) {
-                karmaUserManager.getKarmaUser(player).setKarmaLevel(oldKarmaLevel.get(player));
+                karmaUserManager.getKarmaUser(player).removeYellow();
             }
-            oldKarmaLevel.remove(player);
             players.remove(player);
             playerTimes.remove(player);
         }

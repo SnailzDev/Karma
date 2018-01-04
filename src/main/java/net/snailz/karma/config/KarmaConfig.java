@@ -60,10 +60,16 @@ public class KarmaConfig {
     private void loadKarmaChages(){
         redKarmaChange = new int[]{config.getInt("karmachanges.red.red"), config.getInt("karmachanges.red.neutral"),
                 config.getInt("karmachanges.red.green")};
+        System.out.println("(KC) redKarmaChange = " + config.getInt("karmachanges.red.red") + config.getInt("karmachanges.red.neutral") +
+                config.getInt("karmachanges.red.green"));
         neutralKarmaChange = new int[]{config.getInt("karmachanges.neutral.red"), config.getInt("karmachanges.neutral.neutral"),
                 config.getInt("karmachanges.neutral.green")};
+        System.out.println("(KC) neutralKarmaChange = " + config.getInt("karmachanges.neutral.red") + config.getInt("karmachanges.neutral.neutral") +
+                config.getInt("karmachanges.neutral.green"));
         greenKarmaChange = new int[]{config.getInt("karmachanges.green.red"), config.getInt("karmachanges.green.neutral"),
                 config.getInt("karmachanges.green.green")};
+        System.out.println("(KC) greenKarmaChange = " + config.getInt("karmachanges.green.red") + config.getInt("karmachanges.green.neutral") +
+                config.getInt("karmachanges.green.green"));
     }
 
     private void loadRanges(){
@@ -76,33 +82,47 @@ public class KarmaConfig {
     }
 
     public int getKarmaChange(KarmaLevel killer, KarmaLevel killed){
-
+        System.out.println("getKarmaChange:");
+        System.out.println("killer = " + killer);
+        System.out.println("killed = " + killed);
         switch (killer){
             case RED:
+                System.out.println("RED");
                 switch (killed){
                     case RED:
+                        System.out.println("RED");
                         return redKarmaChange[0];
                     case NEUTRAL:
+                        System.out.println("NEUTRAL");
                         return redKarmaChange[1];
                     case GREEN:
+                        System.out.println("GREEN");
                         return redKarmaChange[2];
                 }
             case NEUTRAL:
+                System.out.println("NEUTRAL");
                 switch (killed){
                     case RED:
+                        System.out.println("RED");
                         return neutralKarmaChange[0];
                     case NEUTRAL:
+                        System.out.println("NEUTRAL");
                         return neutralKarmaChange[1];
                     case GREEN:
+                        System.out.println("GREEN");
                         return neutralKarmaChange[2];
                 }
             case GREEN:
+                System.out.println("GREEN");
                 switch (killed){
                     case RED:
+                        System.out.println("RED");
                         return greenKarmaChange[0];
                     case NEUTRAL:
+                        System.out.println("NEUTRAL");
                         return greenKarmaChange[1];
                     case GREEN:
+                        System.out.println("GREEN");
                         return greenKarmaChange[2];
                 }
             default:

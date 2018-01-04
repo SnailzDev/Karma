@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 public class KarmaUser{
 
     private KarmaLevel karmaLevel;
+    private KarmaLevel oldKarmaLevel;
     private int karma;
     private Player player;
 
@@ -30,7 +31,7 @@ public class KarmaUser{
     }
 
     public KarmaLevel getKarmaLevel() {
-        return karmaLevel;
+        return (karmaLevel == KarmaLevel.YELLOW) ? oldKarmaLevel : karmaLevel;
     }
 
     public int getKarma(){
@@ -125,7 +126,16 @@ public class KarmaUser{
     }
 
     public void setYellow(){
-        setKarmaLevel(KarmaLevel.YELLOW);
+        System.out.println("(KU) oldKarmaLevel = " + oldKarmaLevel);
+        if (karmaLevel != KarmaLevel.YELLOW) {
+            System.out.println("(KU) Aint Yellow!");
+            oldKarmaLevel = karmaLevel;
+            setKarmaLevel(KarmaLevel.YELLOW);
+        }
+    }
+
+    public void removeYellow() {
+        setKarmaLevel(oldKarmaLevel);
     }
 
 }
