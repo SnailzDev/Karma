@@ -52,7 +52,7 @@ public class YellowTimer extends BukkitRunnable{
         for (UUID player : playersToRemove) {
             System.out.println("(YT) Removing " + player);
             //Checks if player is still yellow because when they kill a player they are no longer yellow and might have a new karma level
-            if (karmaUserManager.getKarmaUser(player).getKarmaLevel() == KarmaLevel.YELLOW) {
+            if (karmaUserManager.getKarmaUser(player).getDisplayKarmaLevel() == KarmaLevel.YELLOW) {
                 karmaUserManager.getKarmaUser(player).removeYellow();
             }
             players.remove(player);

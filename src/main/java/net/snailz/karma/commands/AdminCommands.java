@@ -5,6 +5,7 @@ import net.snailz.karma.config.Messages;
 import net.snailz.karma.user.KarmaUser;
 import net.snailz.karma.user.KarmaUserManager;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -86,6 +87,6 @@ public class AdminCommands implements CommandExecutor{
         sender.sendMessage(karmaConfig.prefix + messages.getIllegalKarmaAmmount());
     }
     private void showHelpMenu(CommandSender sender){
-        sender.sendMessage("Karma Help Menu Not Yet Implemented");
+        sender.sendMessage(KarmaConfig.getInstance().prefix + ChatColor.GOLD + "/karma <add/remove> <name> <number>");
     }
 }

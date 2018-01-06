@@ -1,6 +1,7 @@
 package net.snailz.karma.listeners;
 
 import net.snailz.karma.config.KarmaConfig;
+import net.snailz.karma.user.KarmaLevel;
 import net.snailz.karma.user.KarmaUser;
 import net.snailz.karma.user.KarmaUserManager;
 import org.bukkit.entity.Player;
@@ -26,6 +27,9 @@ public class KillListener implements Listener{
         }
         KarmaUser killed = karmaUserManager.getKarmaUser(e.getEntity().getUniqueId());
         KarmaUser killer = karmaUserManager.getKarmaUser(e.getEntity().getKiller().getUniqueId());
+        if (killed.getDisplayKarmaLevel() == KarmaLevel.YELLOW) {
+            return;
+        }
         int karmaChange = KarmaConfig.getInstance().getKarmaChange(killer.getKarmaLevel(), killed.getKarmaLevel());
         System.out.println("(KL) karma change = " + karmaChange);
         killer.changeKarma(karmaChange, killed);

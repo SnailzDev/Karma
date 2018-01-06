@@ -56,7 +56,7 @@ public class VanillaScoreboard implements KarmaScoreboard{
 
     @Override
     public void setScore(KarmaUser karmaUser) {
-        KarmaLevel karmaLevel = karmaUser.getKarmaLevel();
+        KarmaLevel karmaLevel = karmaUser.getDisplayKarmaLevel();
         System.out.println("DEBUG: Karma Level = " + karmaLevel);
         clearScore(karmaUser);
         switch (karmaLevel){

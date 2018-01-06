@@ -34,6 +34,10 @@ public class KarmaUser{
         return (karmaLevel == KarmaLevel.YELLOW) ? oldKarmaLevel : karmaLevel;
     }
 
+    public KarmaLevel getDisplayKarmaLevel() {
+        return karmaLevel;
+    }
+
     public int getKarma(){
         return karma;
     }
@@ -136,6 +140,7 @@ public class KarmaUser{
 
     public void removeYellow() {
         setKarmaLevel(oldKarmaLevel);
+        updateScoreBoard();
     }
 
 }

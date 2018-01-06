@@ -1,6 +1,7 @@
 package net.snailz.karma.listeners;
 
 import net.snailz.karma.runnables.YellowTimer;
+import net.snailz.karma.user.KarmaLevel;
 import net.snailz.karma.user.KarmaUser;
 import net.snailz.karma.user.KarmaUserManager;
 import org.bukkit.entity.Player;
@@ -24,6 +25,10 @@ public class DamageListener implements Listener {
     public void onPlayerDamage(EntityDamageByEntityEvent e) {
         if (!(e.getDamager() instanceof Player) || !(e.getEntity() instanceof Player)) {
             //Not player killer. Does it work with arrows, I dont know
+            return;
+        }
+        KarmaUser damaged = karmaUserManager.getKarmaUser((Player) e.getEntity());
+        if (damaged.getKarmaLevel() == KarmaLevel.RED) {
             return;
         }
         KarmaUser damager = karmaUserManager.getKarmaUser((Player) e.getDamager());
