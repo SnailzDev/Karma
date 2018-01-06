@@ -55,8 +55,7 @@ public class KarmaUser{
 
     }
 
-    public void addKarma(int karma){
-        System.out.println("(KU) add karma. Karma = " + karma);
+    public void addKarma(int karma) {
         this.karma = this.karma + karma;
         if (KarmaConfig.getInstance().maxMinEnabled) {
             if (this.karma >= KarmaConfig.getInstance().maxKarma) {
@@ -91,14 +90,12 @@ public class KarmaUser{
 
     public void setKarmaLevel(KarmaLevel karmaLevel){
         this.karmaLevel = karmaLevel;
-        System.out.println("(KU) DEBUG: Karma Level = " + this.karmaLevel);
         Bukkit.getPluginManager().callEvent(new KarmaLevelChangeEvent(this, karmaLevel));
         updateScoreBoard();
     }
     private void updateKarmaLevel(){
         boolean hasUpdated = false;
         KarmaLevel oldKarmaLevel = karmaLevel;
-        System.out.println("(KU) karma = " + karma);
         switch (KarmaConfig.getInstance().getKarmaLevel(karma)){
             case GREEN:
                 if (karmaLevel != KarmaLevel.GREEN){
@@ -130,9 +127,7 @@ public class KarmaUser{
     }
 
     public void setYellow(){
-        System.out.println("(KU) oldKarmaLevel = " + oldKarmaLevel);
         if (karmaLevel != KarmaLevel.YELLOW) {
-            System.out.println("(KU) Aint Yellow!");
             oldKarmaLevel = karmaLevel;
             setKarmaLevel(KarmaLevel.YELLOW);
         }

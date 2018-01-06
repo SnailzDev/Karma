@@ -5,7 +5,7 @@ version: 2.0
 
 #Can Be:
 #  file - karma.yml
-#  mysql - MySQL database
+#  mysql - MySQL database (NOT TESTED! DO NOT USE)
 #Database
 storagemethod: file
 mysql:
@@ -16,7 +16,7 @@ mysql:
 
 #Can Be:
 #  vanilla - Vanilla scoreboard
-#  vault - Group based scoreboard. Specify permission groups for each group below
+#  vault - Group based scoreboard. Specify permission groups for each group below (NOT TESTED! DO NOT USE)
 scoreboardmethod: vanilla
 
 scoreboardgroups:
