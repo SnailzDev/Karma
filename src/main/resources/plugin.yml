@@ -1,5 +1,5 @@
 name: Karma
-version: 2.0 DEVELOPMENT
+version: 2.0
 main: net.snailz.karma.Karma
 authors: [Snailz, Worlfy]
 database: true
